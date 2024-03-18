@@ -1,0 +1,60 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Todo {
+  id: Int!
+  description: String!
+  done: Boolean!
+}
+
+"""Aggregation type"""
+type AggregationType {
+  total: Int!
+  pending: Int!
+  completed: Int!
+}
+
+type Query {
+  findAll(statusArgs: StatusArgs): [Todo!]!
+  todo(id: Int!): Todo!
+  totalTodos: Int!
+  completedTodos: Int!
+  pendingTodos: Int!
+  aggregations: AggregationType!
+
+  """A simple hello world query"""
+  hello: String!
+
+  """A random"""
+  randomNumber: Float!
+
+  """A random number from 0 to 10"""
+  randomFromZeroTo(to: Int): Int!
+}
+
+input StatusArgs {
+  status: Boolean
+}
+
+type Mutation {
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
+  updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
+  removeTodo(id: Int!): Boolean!
+}
+
+input CreateTodoInput {
+  """The title of the todo"""
+  description: String!
+}
+
+input UpdateTodoInput {
+  """The id of the todo"""
+  id: Int!
+
+  """The title of the todo"""
+  description: String
+
+  """The status of the todo"""
+  done: Boolean
+}
