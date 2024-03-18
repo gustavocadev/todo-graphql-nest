@@ -39,6 +39,10 @@ export class TodoService {
   findAll(statusArgs?: StatusArgs): Todo[] {
     console.log('statusArgs', statusArgs);
 
+    if (statusArgs.status === null) {
+      return this.#todos;
+    }
+
     if (statusArgs?.status !== undefined) {
       return this.#todos.filter((todo) => todo.done === statusArgs?.status);
     }
